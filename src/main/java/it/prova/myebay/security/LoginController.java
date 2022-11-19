@@ -52,7 +52,7 @@ public class LoginController {
 			new SecurityContextLogoutHandler().logout(request, response, auth);
 		}
 		model.addAttribute("infoMessage", "You have been successfully logged out !!");
-		return "login";
+		return "index";
 	}
 
 	@RequestMapping(value = "/accessDenied", method = { RequestMethod.POST, RequestMethod.GET })
