@@ -7,4 +7,5 @@ import it.prova.myebay.model.Ruolo;
 
 public interface RuoloRepository extends CrudRepository<Ruolo, Long>, JpaSpecificationExecutor<Ruolo> {
 
+	Ruolo findByDescrizioneAndCodice(String descrizione, String codice);
 }
