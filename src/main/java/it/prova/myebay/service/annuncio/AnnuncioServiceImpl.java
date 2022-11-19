@@ -45,4 +45,9 @@ public class AnnuncioServiceImpl implements AnnuncioService {
 		annuncioRepository.save(annuncioInstance);
 	}
 
+	@Override
+	public List<Annuncio> findByExample(Annuncio example) {
+		return annuncioRepository.findByExample(example);
+	}
+
 }

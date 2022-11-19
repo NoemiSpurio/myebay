@@ -42,7 +42,7 @@
 				      <div class="container-fluid py-5">
 				        <h1 class="display-5 fw-bold">Benvenuto su MyEbay!</h1>
 				        <p class="col-md-8 fs-4">Questo sito e' specializzato nella gestione della compravendita tra privati. </p>
-				        <a class="btn btn-primary btn-lg" href="#">Cerca tra gli annunci</a>
+				        <a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/annuncio/search">Cerca tra gli annunci</a>
 				      </div>
 			    </div>
 			    
