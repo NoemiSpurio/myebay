@@ -45,4 +45,10 @@ public class RuoloServiceImpl implements RuoloService {
 
 	}
 
+	@Override
+	@Transactional(readOnly = true)
+	public Ruolo cercaPerDescrizioneECodice(String descrizione, String codice) {
+		return ruoloRepository.findByDescrizioneAndCodice(descrizione, codice);
+	}
+
 }
