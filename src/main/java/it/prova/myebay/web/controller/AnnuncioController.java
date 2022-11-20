@@ -60,6 +60,11 @@ public class AnnuncioController {
 	@PostMapping("/list")
 	public String list(AnnuncioDTO example, ModelMap model) {
 
+		if (example.isUtenteLoggato()) {
+			UserDetails principal = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			example.setUtenteInserimento(utenteService.findByUsername(principal.getUsername()));
+		}
+		
 		List<Annuncio> annunci = annuncioService.findByExample(example.buildAnnuncioModel(true));
 
 		model.addAttribute("annunci_list_attribute", AnnuncioDTO.createAnnuncioDTOListFromModelList(annunci, true));
@@ -97,8 +102,16 @@ public class AnnuncioController {
 
 	@GetMapping("/show/{idAnnuncio}")
 	public String showFilm(@PathVariable(required = true) Long idAnnuncio, Model model) {
-		model.addAttribute("show_annuncio_attr",
-				AnnuncioDTO.buildAnnuncioDTOFromModel(annuncioService.caricaSingoloElementoEager(idAnnuncio), true));
+		model.addAttribute("show_annuncio_attr", annuncioService.caricaSingoloElementoEager(idAnnuncio));
 		return "annuncio/show";
+	}
+	
+	@GetMapping("/mysearch")
+	public String mysearch(Model model) {
+		model.addAttribute("categorie_totali_attr",
+				CategoriaDTO.createCategoriaDTOListFromModelSet(categoriaService.listAllCategorie()));
+		model.addAttribute("annuncio_search", new AnnuncioDTO());
+		
+		return "utente/mieiAnnunciSearch";
 	}
 }

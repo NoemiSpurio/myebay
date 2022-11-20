@@ -1,4 +1,5 @@
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!doctype html>
 <html lang="it" class="h-100">
 <head>
@@ -43,6 +44,12 @@
 					  <dd class="col-sm-9">${show_annuncio_attr.utenteInserimento.nome}</dd>
 			    	</dl>
 			    	
+			    	<dl class="row">
+			    		<dt class="col-sm-3 text-right">Categorie:</dt>
+			    		<c:forEach items="${show_annuncio_attr.categorie}" var="categorieItem">
+			    			<dd class="col-sm-9">${categorieItem.codice} </dd>
+			    		</c:forEach>
+			    	</dl>
 			    </div>
 			    
 			    

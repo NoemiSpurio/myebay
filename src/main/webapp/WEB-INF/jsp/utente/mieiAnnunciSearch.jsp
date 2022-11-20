@@ -22,7 +22,7 @@
 			  
 			  <div class='card'>
 				    <div class='card-header'>
-				        <h5>Ricerca tra gli annunci</h5> 
+				        <h5>Ricerca tra gli annunci che hai postato:</h5> 
 				    </div>
 				    <div class='card-body'>
 		
@@ -50,8 +50,7 @@
 								</div>
 								
 								<div class="col-12">
-									<input type="hidden" id="aperto" name="aperto" value="true">
-									<input type="hidden" id="utenteLoggato" name="utenteLoggato" value="false">
+									<input type="hidden" id="utenteLoggato" name="utenteLoggato" value="true">
 									
 									<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Cerca</button>
 									

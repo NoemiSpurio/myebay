@@ -2,9 +2,7 @@ package it.prova.myebay.dto;
 
 import java.util.Arrays;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.validation.constraints.Min;
@@ -31,6 +29,8 @@ public class AnnuncioDTO {
 	private boolean aperto;
 
 	private Utente utenteInserimento;
+	
+	private boolean utenteLoggato;
 
 	private Long[] categorieIds;
 
@@ -153,5 +153,13 @@ public class AnnuncioDTO {
 		return modelListInput.stream().map(annuncioEntity -> {
 			return AnnuncioDTO.buildAnnuncioDTOFromModel(annuncioEntity, includeCategories);
 		}).collect(Collectors.toList());
+	}
+
+	public boolean isUtenteLoggato() {
+		return utenteLoggato;
+	}
+
+	public void setUtenteLoggato(boolean utenteLoggato) {
+		this.utenteLoggato = utenteLoggato;
 	}
 }
