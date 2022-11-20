@@ -50,7 +50,7 @@ public class CategoriaDTO {
 		return new CategoriaDTO(categoriaModel.getId(), categoriaModel.getDescrizione(), categoriaModel.getCodice());
 	}
 
-	public static List<CategoriaDTO> createCategoriaDTOListFromModelSet(Set<Categoria> categoriaSet) {
-		return categoriaSet.stream().map(c -> CategoriaDTO.buildCategoriaFromModel(c)).collect(Collectors.toList());
+	public static List<CategoriaDTO> createCategoriaDTOListFromModelSet(List<Categoria> list) {
+		return list.stream().map(c -> CategoriaDTO.buildCategoriaFromModel(c)).collect(Collectors.toList());
 	}
 }
