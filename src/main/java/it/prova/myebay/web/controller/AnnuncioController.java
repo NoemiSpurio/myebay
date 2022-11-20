@@ -99,6 +99,6 @@ public class AnnuncioController {
 	public String showFilm(@PathVariable(required = true) Long idAnnuncio, Model model) {
 		model.addAttribute("show_annuncio_attr",
 				AnnuncioDTO.buildAnnuncioDTOFromModel(annuncioService.caricaSingoloElementoEager(idAnnuncio), true));
-		return "showAnnuncio";
+		return "annuncio/show";
 	}
 }
