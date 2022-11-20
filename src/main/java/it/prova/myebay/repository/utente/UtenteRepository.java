@@ -10,16 +10,17 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import it.prova.myebay.model.StatoUtente;
 import it.prova.myebay.model.Utente;
 
-public interface UtenteRepository extends PagingAndSortingRepository<Utente, Long>, JpaSpecificationExecutor<Utente> {
+public interface UtenteRepository
+		extends PagingAndSortingRepository<Utente, Long>, JpaSpecificationExecutor<Utente>, CustomUtenteRepository {
 
 	@EntityGraph(attributePaths = { "ruoli" })
 	Optional<Utente> findByUsername(String username);
-	
+
 	@Query("from Utente u left join fetch u.ruoli where u.id = ?1")
 	Optional<Utente> findByIdConRuoli(Long id);
-	
+
 	Utente findByUsernameAndPassword(String username, String password);
-	
+
 	@EntityGraph(attributePaths = { "ruoli" })
-	Utente findByUsernameAndPasswordAndStato(String username,String password, StatoUtente stato);
+	Utente findByUsernameAndPasswordAndStato(String username, String password, StatoUtente stato);
 }

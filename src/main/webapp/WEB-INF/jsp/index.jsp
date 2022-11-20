@@ -81,7 +81,7 @@
 				        </div>
 				        <h2>Gestione utenze</h2>
 				        <p>Cerca tra gli utenti registrati e gestiscene l'inserimento di nuovi, la modifica o le abilitazioni.</p>
-				        <a href="#" class="icon-link">
+				        <a href="${pageContext.request.contextPath}/utente/search" class="icon-link">
 				          Vai alla gestione
 				          <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"/></svg>
 				        </a>
