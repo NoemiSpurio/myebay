@@ -68,7 +68,7 @@
 				        </div>
 				        <h2>Gestione annunci</h2>
 				        <p>Cerca tra i tuoi annunci ancora aperti o creane di nuovi.</p>
-				        <a href="#" class="icon-link">
+				        <a href="${pageContext.request.contextPath}/annuncio/list" class="icon-link">
 				          Cerca annunci
 				          <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"/></svg>
 				        </a>

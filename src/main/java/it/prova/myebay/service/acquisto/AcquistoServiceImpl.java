@@ -45,4 +45,9 @@ public class AcquistoServiceImpl implements AcquistoService {
 		acquistoRepository.save(acquistoInstance);
 	}
 
+	@Override
+	public List<Acquisto> findByExample(Acquisto example) {
+		return acquistoRepository.findByExample(example);
+	}
+
 }

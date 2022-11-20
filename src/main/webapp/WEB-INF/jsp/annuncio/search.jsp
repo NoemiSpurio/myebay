@@ -1,3 +1,5 @@
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html lang="it" class="h-100" >
 	 <head>
@@ -35,6 +37,16 @@
 								<div class="col-md-6">
 									<label for="prezzo" class="form-label">Prezzo (a partire da)</label>
 									<input type="number" class="form-control" name="prezzo" id="prezzo" placeholder="Inserire il prezzo minimo" >
+								</div>
+								
+								<div class="col-md-6">
+									<label for="categorie" class="form-label">Categorie</label>
+									<c:forEach items="${categorie_totali_attr}" var="ruoloItem">
+										<div class="form-check">
+  											<input class="form-check-input" type="checkbox" value="${ruoloItem.id}" id="flexCheckDefault" name="categorie" <c:if test="${ruoli_assegnati.contains(ruoloItem.id)}">checked="checked"</c:if>>
+  											<label class="form-check-label" for="flexCheckDefault">${ruoloItem.codice}</label>
+										</div>
+									</c:forEach>
 								</div>
 								
 								<div class="col-12">

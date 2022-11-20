@@ -15,4 +15,6 @@ public interface AcquistoService {
 	public void rimuovi(Long id);
 
 	public void inserisciNuovo(Acquisto acquistoInstance);
+
+	public List<Acquisto> findByExample(Acquisto example);
 }

@@ -1,6 +1,7 @@
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!doctype html>
 <html lang="it" class="h-100" >
 	 <head>
@@ -31,7 +32,10 @@
 				        <h5>Elenco annunci</h5> 
 				    </div>
 				    <div class='card-body'>
-				    
+				    	<sec:authorize access="isAuthenticated()">
+				    		<a class="btn btn-primary " href="${pageContext.request.contextPath}/annuncio/insert">Aggiungi annuncio</a>
+				    	</sec:authorize>
+				    	
 				        <div class='table-responsive'>
 				            <table class='table table-striped ' >
 				                <thead>
