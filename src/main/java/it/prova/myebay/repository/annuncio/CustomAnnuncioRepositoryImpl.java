@@ -33,13 +33,12 @@ public class CustomAnnuncioRepositoryImpl implements CustomAnnuncioRepository {
 			whereClauses.add(" a.prezzo  > :prezzo ");
 			paramaterMap.put("prezzo", example.getPrezzo());
 		}
-		if (example.isAperto()) {
+		
+		if (example.getUtenteInserimento() == null && example.isAperto()) {
 			whereClauses.add(" a.aperto  = :aperto ");
 			paramaterMap.put("aperto", true);
-		} else {
-			whereClauses.add(" a.aperto  = :aperto ");
-			paramaterMap.put("aperto", false);
 		}
+		
 		if (example.getData() != null) {
 			whereClauses.add(" a.data  > :data ");
 			paramaterMap.put("data", example.getData());

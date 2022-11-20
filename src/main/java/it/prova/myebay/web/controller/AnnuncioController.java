@@ -68,6 +68,11 @@ public class AnnuncioController {
 		List<Annuncio> annunci = annuncioService.findByExample(example.buildAnnuncioModel(true));
 
 		model.addAttribute("annunci_list_attribute", AnnuncioDTO.createAnnuncioDTOListFromModelList(annunci, true));
+		
+		if (example.isUtenteLoggato()) {
+			return "utente/myAnnunci";
+		}
+		
 		return "annuncio/list";
 	}
 
