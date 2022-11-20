@@ -28,7 +28,7 @@ public class Acquisto {
 	private Date data;
 
 	@Column(name = "prezzo")
-	private int prezzo;
+	private Integer prezzo;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "utente_id", nullable = false)
@@ -38,7 +38,7 @@ public class Acquisto {
 
 	}
 
-	public Acquisto(String descrizione, Date data, int prezzo, Utente utente) {
+	public Acquisto(String descrizione, Date data, Integer prezzo, Utente utente) {
 		super();
 		this.descrizione = descrizione;
 		this.data = data;
@@ -70,7 +70,7 @@ public class Acquisto {
 		this.data = data;
 	}
 
-	public int getPrezzo() {
+	public Integer getPrezzo() {
 		return prezzo;
 	}
 
