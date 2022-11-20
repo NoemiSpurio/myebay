@@ -3,6 +3,8 @@ package it.prova.myebay.web.controller;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -24,7 +27,6 @@ import it.prova.myebay.dto.CategoriaDTO;
 import it.prova.myebay.model.Annuncio;
 import it.prova.myebay.service.annuncio.AnnuncioService;
 import it.prova.myebay.service.categoria.CategoriaService;
-import it.prova.myebay.service.ruolo.RuoloService;
 import it.prova.myebay.service.utente.UtenteService;
 
 @Controller
@@ -118,5 +120,21 @@ public class AnnuncioController {
 		model.addAttribute("annuncio_search", new AnnuncioDTO());
 		
 		return "utente/mieiAnnunciSearch";
+	}
+	
+	@GetMapping("/delete/{idAnnuncio}")
+	public String delete(@PathVariable(required = true) Long idAnnuncio, Model model, HttpServletRequest request) {
+		AnnuncioDTO annuncioDTO = AnnuncioDTO.buildAnnuncioDTOFromModel(annuncioService.caricaSingoloAnnuncio(idAnnuncio), false);
+		model.addAttribute("delete_annuncio_attr", annuncioDTO);
+		return "annuncio/delete";
+	}
+	
+	@PostMapping("/executeDelete")
+	public String remove(@RequestParam Long idAnnuncio, RedirectAttributes redirectAttrs) {
+
+		annuncioService.rimuovi(idAnnuncio);
+		
+		redirectAttrs.addFlashAttribute("successMessage", "Operazione eseguita correttamente");
+		return "redirect:/annuncio/list";
 	}
 }
