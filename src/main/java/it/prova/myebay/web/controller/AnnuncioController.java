@@ -111,10 +111,20 @@ public class AnnuncioController {
 		annuncioDTO.setUtenteInserimento(utenteService.findByUsername(principal.getUsername()));
 		annuncioService.inserisciNuovo(annuncioDTO.buildAnnuncioModel(true));
 
-		List<Annuncio> annunci = annuncioService.listAllAnnunci();
-		model.addAttribute("annunci_list_attribute", AnnuncioDTO.createAnnuncioDTOListFromModelList(annunci, true));
 		redirectAttrs.addFlashAttribute("successMessage", "Annuncio inserito correttamente");
-		return "/index";
+
+		return "redirect:/annuncio/listUtente";
+	}
+	
+	@RequestMapping("/listUtente")
+	public String listAnnunciUtente(HttpServletRequest request, Annuncio annuncioExample, ModelMap model) {
+		UserDetails principal = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		annuncioExample.setUtenteInserimento(utenteService.findByUsername(principal.getUsername()));
+		
+		model.addAttribute("annunci_list_attribute", AnnuncioDTO
+				.createAnnuncioDTOListFromModelList(annuncioService.findByExample(annuncioExample), false));
+
+		return "utente/myAnnunci";
 	}
 
 	@GetMapping("/show/{idAnnuncio}")
