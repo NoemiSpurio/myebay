@@ -101,7 +101,7 @@ public class AnnuncioController {
 		if (result.hasErrors()) {
 			model.addAttribute("categorie_totali_attr",
 					CategoriaDTO.createCategoriaDTOListFromModelSet(categoriaService.listAllCategorie()));
-			return "annuncio/insert";
+			return "/index";
 		}
 
 		annuncioDTO.setData(new Date());
@@ -114,7 +114,7 @@ public class AnnuncioController {
 		List<Annuncio> annunci = annuncioService.listAllAnnunci();
 		model.addAttribute("annunci_list_attribute", AnnuncioDTO.createAnnuncioDTOListFromModelList(annunci, true));
 		redirectAttrs.addFlashAttribute("successMessage", "Annuncio inserito correttamente");
-		return "redirect:/annuncio/list";
+		return "/index";
 	}
 
 	@GetMapping("/show/{idAnnuncio}")
@@ -203,6 +203,6 @@ public class AnnuncioController {
 		redirectAttrs.addFlashAttribute("successMessage", "Operazione eseguita correttamente");
 		model.addAttribute("acquisti_list_attribute", AcquistoDTO
 				.createAcquistoDTOListFromModelList(acquistoService.findAllAcquistiEagerUtente(utenteLoggato.getId())));
-		return "/index";
+		return "/annuncio/list";
 	}
 }

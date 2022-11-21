@@ -38,6 +38,15 @@ public class Acquisto {
 
 	}
 
+	public Acquisto(Long id, String descrizione, Date data, Integer prezzo, Utente utenteAcquirente) {
+		super();
+		this.id = id;
+		this.descrizione = descrizione;
+		this.data = data;
+		this.prezzo = prezzo;
+		this.utenteAcquirente = utenteAcquirente;
+	}
+
 	public Acquisto(String descrizione, Date data, Integer prezzo, Utente utente) {
 		super();
 		this.descrizione = descrizione;

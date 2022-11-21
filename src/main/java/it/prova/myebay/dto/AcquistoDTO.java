@@ -68,6 +68,11 @@ public class AcquistoDTO {
 		this.utenteAcquirente = utenteAcquirente;
 	}
 
+	public Acquisto buildAcquistoModel() {
+		Acquisto result = new Acquisto(this.id, this.descrizione, this.data, this.prezzo, this.utenteAcquirente);
+		return result;
+	}
+
 	public static AcquistoDTO buildAcquistoFromModel(Acquisto acquistoModel) {
 		return new AcquistoDTO(acquistoModel.getId(), acquistoModel.getDescrizione(), acquistoModel.getData(),
 				acquistoModel.getPrezzo(), acquistoModel.getUtente());
@@ -76,7 +81,7 @@ public class AcquistoDTO {
 	public static List<AcquistoDTO> createAcquistoDTOListFromModelList(List<Acquisto> list) {
 		return list.stream().map(a -> AcquistoDTO.buildAcquistoFromModel(a)).collect(Collectors.toList());
 	}
-	
+
 	public static List<AcquistoDTO> buildAcquistoDtoListFromModelList(List<Acquisto> models) {
 		return models.stream().map(acquisto -> {
 			return AcquistoDTO.buildAcquistoFromModel(acquisto);

@@ -1,7 +1,6 @@
 package it.prova.myebay.dto;
 
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import it.prova.myebay.model.Categoria;
