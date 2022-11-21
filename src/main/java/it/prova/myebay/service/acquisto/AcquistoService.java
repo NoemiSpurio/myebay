@@ -17,4 +17,6 @@ public interface AcquistoService {
 	public void inserisciNuovo(Acquisto acquistoInstance);
 
 	public List<Acquisto> findByExample(Acquisto example);
+	
+	public List<Acquisto> findAllAcquistiEagerUtente(Long id);
 }

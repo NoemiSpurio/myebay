@@ -50,4 +50,9 @@ public class AcquistoServiceImpl implements AcquistoService {
 		return acquistoRepository.findByExample(example);
 	}
 
+	@Override
+	public List<Acquisto> findAllAcquistiEagerUtente(Long id) {
+		return acquistoRepository.findAcquistiUtente(id);
+	}
+
 }

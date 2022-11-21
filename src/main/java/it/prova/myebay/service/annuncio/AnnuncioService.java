@@ -3,6 +3,7 @@ package it.prova.myebay.service.annuncio;
 import java.util.List;
 
 import it.prova.myebay.model.Annuncio;
+import it.prova.myebay.model.Utente;
 
 public interface AnnuncioService {
 
@@ -21,4 +22,6 @@ public interface AnnuncioService {
 	public Annuncio caricaSingoloElementoEager(Long id);
 	
 	public Annuncio caricaSingoloElementoConCategorie(Long id);
+	
+	public void compra(Long id, Utente utenteInstance);
 }

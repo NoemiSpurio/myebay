@@ -34,7 +34,7 @@ public class CustomAnnuncioRepositoryImpl implements CustomAnnuncioRepository {
 			paramaterMap.put("prezzo", example.getPrezzo());
 		}
 		
-		if (example.getUtenteInserimento() == null && example.isAperto()) {
+		if (example.isAperto()) {
 			whereClauses.add(" a.aperto  = :aperto ");
 			paramaterMap.put("aperto", true);
 		}

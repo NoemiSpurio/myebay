@@ -1,5 +1,6 @@
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!doctype html>
 <html lang="it" class="h-100">
 <head>
@@ -55,9 +56,22 @@
 			    
 			    
 			    <div class='card-footer'>
-			        
-			        <!-- inserire tasto COMPRA -->
-			        
+			       <a href="${pageContext.request.contextPath}/annuncio/list" class='btn btn-outline-secondary' style='width:80px'>
+			            <i class='fa fa-chevron-left'></i>Back
+			       </a>
+			       <p>
+				       <sec:authorize access="isAuthenticated()">
+					      <form action="${pageContext.request.contextPath}/annuncio/compra" method="post">
+						    	<input type="hidden" name="idAnnuncio" value="${show_annuncio_attr.id}">
+						    	<button type="submit" name="submit" id="submit" class="btn btn-primary">Compra</button>
+						   </form>
+				       </sec:authorize>
+				       <sec:authorize access="!isAuthenticated()">
+				       		<a href="${pageContext.request.contextPath}/login" class='btn btn-outline-primary' style='width:90px'>
+					            <i class='fa fa-chevron-left'></i>Compra
+					       </a>
+				       </sec:authorize>
+			       </p>
 			    </div>
 			</div>	
 		</div>
