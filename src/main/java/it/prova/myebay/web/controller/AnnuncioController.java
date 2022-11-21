@@ -203,6 +203,6 @@ public class AnnuncioController {
 		redirectAttrs.addFlashAttribute("successMessage", "Operazione eseguita correttamente");
 		model.addAttribute("acquisti_list_attribute", AcquistoDTO
 				.createAcquistoDTOListFromModelList(acquistoService.findAllAcquistiEagerUtente(utenteLoggato.getId())));
-		return "/annuncio/list";
+		return "redirect:/acquisto/list";
 	}
 }
