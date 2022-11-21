@@ -1,16 +1,21 @@
 package it.prova.myebay.web.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import it.prova.myebay.dto.AcquistoDTO;
+import it.prova.myebay.dto.UtenteDTO;
 import it.prova.myebay.model.Acquisto;
-import it.prova.myebay.model.Utente;
 import it.prova.myebay.service.acquisto.AcquistoService;
 import it.prova.myebay.service.utente.UtenteService;
 
@@ -24,22 +29,39 @@ public class AcquistoController {
 	@Autowired
 	private UtenteService utenteService;
 	
-	@GetMapping("/mieiacquisti")
-	public ModelAndView listAllAcquisti(Authentication authentication) {
-		String currentUserName = "";
-		if (!(authentication instanceof AnonymousAuthenticationToken)) 
-		    currentUserName = authentication.getName();	    
-
+	@GetMapping
+	public ModelAndView listAll() {
 		ModelAndView mv = new ModelAndView();
-		Utente utenteInSessione = utenteService.findByUsername(currentUserName);
-		Acquisto example = new Acquisto(null, null, null, utenteInSessione);
-		mv.addObject("list_acquisto_attr", AcquistoDTO.buildAcquistoDtoListFromModelList(acquistoService.findByExample(example)));
+		mv.addObject("acquisti_list_attribute",
+				AcquistoDTO.createAcquistoDTOListFromModelList(acquistoService.listAllAcquisti()));
 		mv.setViewName("acquisto/list");
 		return mv;
 	}
 	
-	@GetMapping(value = "/search")
-	public String searchAcquisto() {
+	@RequestMapping("/list")
+	public String list(Acquisto acquistoExample, ModelMap model, HttpServletRequest request) {
+		UserDetails principal = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		acquistoExample.setUtente(utenteService.findByUsername(principal.getUsername()));
+		model.addAttribute("acquisti_list_attribute", AcquistoDTO
+				.createAcquistoDTOListFromModelList(acquistoService.findByExample(acquistoExample)));
+
+		return "acquisto/list";
+	}
+	
+	@GetMapping("/search")
+	public String search(Model model) {
 		return "acquisto/search";
+	}
+	
+	@GetMapping("/show/{idAcquisto}")
+	public String show(HttpServletRequest request, @PathVariable(required = true) Long idAcquisto,
+			Model model) {
+		Acquisto acquistoInstance = acquistoService.caricaSingoloAcquisto(idAcquisto);
+		UserDetails principal = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		acquistoInstance.setUtente(utenteService.findByUsername(principal.getUsername()));
+		AcquistoDTO result = AcquistoDTO.buildAcquistoFromModel(acquistoInstance);
+		
+		model.addAttribute("show_acquisto_attr", result);
+		return "acquisto/show";
 	}
 }
