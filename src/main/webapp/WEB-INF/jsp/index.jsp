@@ -61,7 +61,7 @@
 				        </div>
 				        <h2>Acquisti effettuati</h2>
 				        <p>Cerca tra i tuoi acquisti effettuati.</p>
-				        <a href="#" class="icon-link">
+				        <a href="${pageContext.request.contextPath}/acquisto/search" class="icon-link">
 				          Cerca acquisti
 				          <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"/></svg>
 				        </a>

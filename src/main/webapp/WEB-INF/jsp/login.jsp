@@ -46,6 +46,10 @@
 			  
 			  
 			</form>
+			
+			<div>
+				<a href="${pageContext.request.contextPath}/utente/insert">Registrati ora</a>
+			</div>
 		</main>
 	</body>
 </html>

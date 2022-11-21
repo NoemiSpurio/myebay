@@ -1,5 +1,6 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!doctype html>
 <html lang="it" class="h-100" >
 	 <head>
@@ -81,22 +82,24 @@
 									<form:errors  path="confermaPassword" cssClass="error_field" />
 								</div>
 								
-								<div class="col-md-6 form-check" id="ruoliDivId">
-									<p>Ruoli:</p>
-									<form:checkboxes itemValue="id" itemLabel="codice"  element="div class='form-check'" items="${ruoli_totali_attr}" path="ruoliIds" />
-								</div>
-								<script>
-									$(document).ready(function(){
-										
-										$("#ruoliDivId :input").each(function () {
-											$(this).addClass('form-check-input'); 
+								<sec:authorize access="hasRole('ADMIN')">
+									<div class="col-md-6 form-check" id="ruoliDivId">
+										<p>Ruoli:</p>
+										<form:checkboxes itemValue="id" itemLabel="codice"  element="div class='form-check'" items="${ruoli_totali_attr}" path="ruoliIds" />
+									</div>
+									<script>
+										$(document).ready(function(){
+											
+											$("#ruoliDivId :input").each(function () {
+												$(this).addClass('form-check-input'); 
+											});
+											$("#ruoliDivId label").each(function () {
+												$(this).addClass('form-check-label'); 
+											});
+											
 										});
-										$("#ruoliDivId label").each(function () {
-											$(this).addClass('form-check-label'); 
-										});
-										
-									});
-								</script>
+									</script>
+								</sec:authorize>
 								
 								
 								<div class="col-12">
