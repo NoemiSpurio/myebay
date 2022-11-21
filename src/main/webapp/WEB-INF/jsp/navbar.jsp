@@ -15,8 +15,8 @@
 	          <li class="nav-item dropdown">
 	            <a class="nav-link dropdown-toggle" href="#" id="dropdown07" data-bs-toggle="dropdown" aria-expanded="false">Gestione account</a>
 	            <ul class="dropdown-menu" aria-labelledby="dropdown07">
-	              <li><a class="dropdown-item" href="#">Acquisti effettuati</a></li>
-	              <li><a class="dropdown-item" href="#">Gestione annunci</a></li>
+	              <li><a class="dropdown-item" href="${pageContext.request.contextPath}/acquisto/search">Acquisti effettuati</a></li>
+	              <li><a class="dropdown-item" href="${pageContext.request.contextPath}/annuncio/mysearch">Gestione annunci</a></li>
 	            </ul> 
 	          </li>
           </sec:authorize>
