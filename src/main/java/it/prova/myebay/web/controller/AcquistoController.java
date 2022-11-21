@@ -1,5 +1,7 @@
 package it.prova.myebay.web.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +31,7 @@ public class AcquistoController {
 	@Autowired
 	private UtenteService utenteService;
 	
-	@GetMapping
+	@GetMapping("/listAll")
 	public ModelAndView listAll() {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("acquisti_list_attribute",
@@ -42,8 +44,10 @@ public class AcquistoController {
 	public String list(Acquisto acquistoExample, ModelMap model, HttpServletRequest request) {
 		UserDetails principal = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		acquistoExample.setUtente(utenteService.findByUsername(principal.getUsername()));
+		
+		List<Acquisto> acquisti = acquistoService.findByExample(acquistoExample);
 		model.addAttribute("acquisti_list_attribute", AcquistoDTO
-				.createAcquistoDTOListFromModelList(acquistoService.findByExample(acquistoExample)));
+				.createAcquistoDTOListFromModelList(acquisti));
 
 		return "acquisto/list";
 	}

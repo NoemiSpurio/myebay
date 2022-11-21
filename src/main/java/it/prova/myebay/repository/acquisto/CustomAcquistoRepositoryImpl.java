@@ -34,7 +34,7 @@ public class CustomAcquistoRepositoryImpl implements CustomAcquistoRepository{
 			parameterMap.put("data", example.getData());
 		}
 		if (example.getPrezzo() != null) {
-			whereClauses.add(" a.prezzo = :prezzo ");
+			whereClauses.add(" a.prezzo > :prezzo ");
 			parameterMap.put("prezzo", example.getPrezzo());
 		}
 		
