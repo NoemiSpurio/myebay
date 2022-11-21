@@ -53,7 +53,12 @@ public class AnnuncioServiceImpl implements AnnuncioService {
 	@Override
 	@Transactional(readOnly = true)
 	public Annuncio caricaSingoloElementoEager(Long id) {
-		return annuncioRepository.FindSingleAnnuncioEager(id);
+		return annuncioRepository.findSingleAnnuncioEager(id);
+	}
+
+	@Override
+	public Annuncio caricaSingoloElementoConCategorie(Long id) {
+		return annuncioRepository.findByIdConCategorie(id).orElse(null);
 	}
 
 }

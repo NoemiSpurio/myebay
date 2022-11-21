@@ -3,6 +3,7 @@ package it.prova.myebay.dto;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.validation.constraints.Min;
@@ -29,10 +30,12 @@ public class AnnuncioDTO {
 	private boolean aperto;
 
 	private Utente utenteInserimento;
-	
+
 	private boolean utenteLoggato;
 
 	private Long[] categorieIds;
+
+	private Set<Categoria> categorie;
 
 	public AnnuncioDTO() {
 
@@ -124,6 +127,14 @@ public class AnnuncioDTO {
 		this.categorieIds = categorieIds;
 	}
 
+	public Set<Categoria> getCategorie() {
+		return categorie;
+	}
+
+	public void setCategorie(Set<Categoria> categorie) {
+		this.categorie = categorie;
+	}
+
 	public Annuncio buildAnnuncioModel(boolean includeIdCategorie) {
 		Annuncio result = new Annuncio(this.id, this.testoAnnuncio, this.prezzo, this.data, this.aperto,
 				this.utenteInserimento);
@@ -144,7 +155,7 @@ public class AnnuncioDTO {
 			result.categorieIds = annuncioModel.getCategorie().stream().map(c -> c.getId()).collect(Collectors.toList())
 					.toArray(new Long[] {});
 		}
-		
+
 		return result;
 	}
 

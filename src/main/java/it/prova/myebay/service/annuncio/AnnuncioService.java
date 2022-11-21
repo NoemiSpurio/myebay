@@ -19,4 +19,6 @@ public interface AnnuncioService {
 	public List<Annuncio> findByExample(Annuncio example);
 	
 	public Annuncio caricaSingoloElementoEager(Long id);
+	
+	public Annuncio caricaSingoloElementoConCategorie(Long id);
 }
