@@ -101,7 +101,7 @@ public class AnnuncioController {
 		if (result.hasErrors()) {
 			model.addAttribute("categorie_totali_attr",
 					CategoriaDTO.createCategoriaDTOListFromModelSet(categoriaService.listAllCategorie()));
-			return "/index";
+			return "/annuncio/insert";
 		}
 
 		annuncioDTO.setData(new Date());
