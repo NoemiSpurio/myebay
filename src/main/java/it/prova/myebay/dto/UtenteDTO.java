@@ -40,7 +40,18 @@ public class UtenteDTO {
 
 	private Long[] ruoliIds;
 
+	private String vecchiaPassword;
+
 	public UtenteDTO() {
+	}
+
+	public UtenteDTO(
+			@NotBlank(message = "{password.notblank}", groups = ValidationWithPassword.class) @Size(min = 8, max = 15, message = "Il valore inserito deve essere lungo tra {min} e {max} caratteri") String password,
+			String confermaPassword, String vecchiaPassword) {
+		super();
+		this.password = password;
+		this.confermaPassword = confermaPassword;
+		this.vecchiaPassword = vecchiaPassword;
 	}
 
 	public UtenteDTO(Long id, String username, String nome, String cognome, StatoUtente stato) {
@@ -123,7 +134,7 @@ public class UtenteDTO {
 	public void setRuoliIds(Long[] ruoliIds) {
 		this.ruoliIds = ruoliIds;
 	}
-	
+
 	public boolean isAttivo() {
 		return this.stato != null && this.stato.equals(StatoUtente.ATTIVO);
 	}
@@ -152,5 +163,13 @@ public class UtenteDTO {
 		return modelListInput.stream().map(utenteEntity -> {
 			return UtenteDTO.buildUtenteDTOFromModel(utenteEntity, includeRoles);
 		}).collect(Collectors.toList());
+	}
+
+	public String getVecchiaPassword() {
+		return vecchiaPassword;
+	}
+
+	public void setVecchiaPassword(String vecchiaPassword) {
+		this.vecchiaPassword = vecchiaPassword;
 	}
 }

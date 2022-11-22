@@ -37,7 +37,7 @@ public class SecSecurityConfig extends WebSecurityConfigurerAdapter {
          .antMatchers("/assets/**").permitAll()
          .antMatchers("/login","/","/home","/utente/insert","/annuncio/search","/annuncio/show/**", "/annuncio/list", "/annuncio/acquistaWithoutAuth").permitAll()
          .antMatchers("/utente/**").hasRole("ADMIN")
-         .antMatchers("/**","/annuncio/**","/acquisto/**").hasAnyRole("ADMIN", "CLASSIC_USER")
+         .antMatchers("/**","/annuncio/**","/acquisto/**","/account/**").hasAnyRole("ADMIN", "CLASSIC_USER")
          .anyRequest().authenticated()
          .and().exceptionHandling().accessDeniedPage("/accessDenied")
          .and()

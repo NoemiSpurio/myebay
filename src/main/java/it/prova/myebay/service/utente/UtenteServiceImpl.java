@@ -8,6 +8,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import it.prova.myebay.dto.UtenteChangePwdDTO;
 import it.prova.myebay.model.StatoUtente;
 import it.prova.myebay.model.Utente;
 import it.prova.myebay.repository.utente.UtenteRepository;
@@ -96,4 +97,9 @@ public class UtenteServiceImpl implements UtenteService {
 		return repository.findByUsername(username).orElse(null);
 	}
 
+	@Transactional
+	public void changePwd(UtenteChangePwdDTO nuovePwds, Utente utenteModel) {
+		utenteModel.setPassword(passwordEncoder.encode(nuovePwds.getPassword()));
+		repository.save(utenteModel);
+	}
 }
