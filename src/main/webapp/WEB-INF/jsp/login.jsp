@@ -1,3 +1,5 @@
+<%@page import="org.springframework.ui.ModelMap"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <!doctype html>
 <html lang="it">
 	<head>
@@ -11,6 +13,7 @@
 	
 	<body class="text-center">
 		<main class="form-signin">
+		
 			<form class="form-signin" name='login' action="login" method='POST' novalidate="novalidate">
 		   	
 			   	<div class="alert alert-danger alert-dismissible fade show ${errorMessage==null?'d-none': ''}" role="alert">
@@ -34,7 +37,7 @@
 			      <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Password">
 			      <label for="inputPassword">Password</label>
 			    </div>
-			
+	
 			    <div class="checkbox mb-3">
 			      <label>
 			        <input type="checkbox" value="remember-me"> Remember me

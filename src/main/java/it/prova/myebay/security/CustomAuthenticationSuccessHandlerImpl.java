@@ -31,6 +31,9 @@ public class CustomAuthenticationSuccessHandlerImpl implements AuthenticationSuc
 		utenteParziale.setNome(utenteFromDb.getNome());
 		utenteParziale.setCognome(utenteFromDb.getCognome());
 		request.getSession().setAttribute("userInfo", utenteParziale);
+		if (request.getSession().getAttribute("idAnnuncio") != null) {
+			response.sendRedirect("/annuncio/show/" + request.getSession().getAttribute("idAnnuncio"));
+		}
 		response.sendRedirect("home");
 	}
 

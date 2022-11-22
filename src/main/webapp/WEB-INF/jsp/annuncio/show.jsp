@@ -59,25 +59,53 @@
 			       <a href="${pageContext.request.contextPath}/annuncio/list" class='btn btn-outline-secondary' style='width:80px'>
 			            <i class='fa fa-chevron-left'></i>Back
 			       </a>
-			       <p>
-				       <sec:authorize access="isAuthenticated()">
-					      <form action="${pageContext.request.contextPath}/annuncio/compra" method="post">
+			       <div>
+				       <sec:authorize access="isAuthenticated()">						   
+						  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmOperationModal">
+					  Compra
+					</button>
+				       </sec:authorize>
+				       
+				       <sec:authorize access="!isAuthenticated()">
+					       <form action="${pageContext.request.contextPath}/login" method="post">
 						    	<input type="hidden" name="idAnnuncio" value="${show_annuncio_attr.id}">
 						    	<button type="submit" name="submit" id="submit" class="btn btn-primary">Compra</button>
 						   </form>
 				       </sec:authorize>
-				       <sec:authorize access="!isAuthenticated()">
-				       		<a href="${pageContext.request.contextPath}/login" class='btn btn-outline-primary' style='width:90px'>
-					            <i class='fa fa-chevron-left'></i>Compra
-					       </a>
-				       </sec:authorize>
-			       </p>
+			       </div>
 			    </div>
 			</div>	
 		</div>
 		
 	</main>
 	<jsp:include page="../footer.jsp" />
+	
+	<div class="modal fade" id="confirmOperationModal" tabindex="-1"  aria-labelledby="confirmOperationModalLabel"
+	    aria-hidden="true">
+	    <div class="modal-dialog modal-dialog-centered" >
+	        <div class="modal-content">
+	            <div class="modal-header">
+	                <h5 class="modal-title" id="confirmOperationModalLabel">Conferma Aquisto</h5>
+	                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	            </div>
+	            <div class="modal-body">
+	                Continuare con l'aquisto?
+	            </div>
+	            <form method="post" action="${pageContext.request.contextPath}/annuncio/compra" >
+		            <div class="modal-footer">
+		                <button type="button" class="btn btn-secondary modal" data-bs-dismiss="modal">Chiudi</button>
+		            	<input type="hidden" name="idAnnuncio" id="idAnnuncio" value="${show_annuncio_attr.id}">
+		            	<input type="hidden" name="idUtente" id="idUtente" value="${userinfo.id}">
+		                <input type="submit" value="Continua"  class="btn btn-primary">
+		            </div>
+	            </form>
+	        </div>
+	    </div>
+	</div>
+	<!-- end Modal -->
+	<script type="text/javascript">
+		
+	</script>
 	
 </body>
 </html>

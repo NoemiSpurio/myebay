@@ -51,7 +51,7 @@
 			                </tbody>
 			            </table>
 			            
-			            <a href="${pageContext.request.contextPath}/index" class='btn btn-outline-secondary' >
+			            <a href="${pageContext.request.contextPath}/home" class='btn btn-outline-secondary' >
 				            <i class='fa fa-chevron-left'></i>Home
 				        </a>
 			        </div>

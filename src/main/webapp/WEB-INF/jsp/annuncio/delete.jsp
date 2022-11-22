@@ -49,7 +49,7 @@
 					    <form action="${pageContext.request.contextPath}/annuncio/executeDelete" method="post">
 					    	<input type="hidden" name="idAnnuncio" value="${delete_annuncio_attr.id}">
 					    	<button type="submit" name="submit" id="submit" class="btn btn-danger">Conferma</button>
-					        	<a href="${pageContext.request.contextPath }/index" class='btn btn-outline-secondary' style='width:80px'>
+					        	<a href="${pageContext.request.contextPath}/home" class='btn btn-outline-secondary' style='width:80px'>
 					        	    <i class='fa fa-chevron-left'></i> Annulla
 					       		</a>
 					    </form>
