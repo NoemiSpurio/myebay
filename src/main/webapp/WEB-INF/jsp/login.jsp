@@ -8,13 +8,13 @@
 	
 	 	<jsp:include page="./header.jsp" />
 	
-	    <link href="assets/css/signin.css" rel="stylesheet">
+	    <link href="${pageContext.request.contextPath}/assets/css/signin.css" rel="stylesheet">
 	</head>
 	
 	<body class="text-center">
 		<main class="form-signin">
 		
-			<form class="form-signin" name='login' action="login" method='POST' novalidate="novalidate">
+			<form class="form-signin" name='login' action="${pageContext.request.contextPath}/login" method='POST' novalidate="novalidate">
 		   	
 			   	<div class="alert alert-danger alert-dismissible fade show ${errorMessage==null?'d-none': ''}" role="alert">
 				  ${errorMessage}
@@ -37,6 +37,8 @@
 			      <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Password">
 			      <label for="inputPassword">Password</label>
 			    </div>
+			    
+			    <input type="hidden" name="idAnnuncioWithNoAuth" value="${idAnnuncioWithNoAuth}">
 	
 			    <div class="checkbox mb-3">
 			      <label>

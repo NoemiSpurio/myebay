@@ -20,18 +20,11 @@ public class LoginController {
 
 	@RequestMapping(value = "/login", method = { RequestMethod.POST, RequestMethod.GET })
 	public String loginPage(@RequestParam(value = "error", required = false) String error, Model model,
-			HttpServletRequest request, @RequestParam(required = false) Long idAnnuncio) {
-
-		if (idAnnuncio != null && error != null) {
+			HttpServletRequest request) {
+		if (error != null) {
 			model.addAttribute("errorMessage", getErrorMessage(request, "SPRING_SECURITY_LAST_EXCEPTION"));
 		}
-		
-		System.out.println(idAnnuncio);
-		
-		if (idAnnuncio != null) {
-			request.getSession().setAttribute("idAnnuncio", idAnnuncio);
-		}
-		
+
 		return "login";
 	}
 

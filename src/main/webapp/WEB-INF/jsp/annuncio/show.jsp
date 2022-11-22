@@ -66,12 +66,9 @@
 					</button>
 				       </sec:authorize>
 				       
-				       <sec:authorize access="!isAuthenticated()">
-					       <form action="${pageContext.request.contextPath}/login" method="post">
-						    	<input type="hidden" name="idAnnuncio" value="${show_annuncio_attr.id}">
-						    	<button type="submit" name="submit" id="submit" class="btn btn-primary">Compra</button>
-						   </form>
-				       </sec:authorize>
+				     	<sec:authorize access="!isAuthenticated()">
+							 <a class="btn btn-success" href="${pageContext.request.contextPath}/annuncio/acquistaWithoutAuth?idAnnuncioWithNoAuth=${show_annuncio_attr.id }">Acquista</a> 
+						</sec:authorize>
 			       </div>
 			    </div>
 			</div>	
