@@ -53,13 +53,13 @@ public class LoginController {
 			new SecurityContextLogoutHandler().logout(request, response, auth);
 		}
 		model.addAttribute("infoMessage", "You have been successfully logged out !!");
-		return "index";
+		return "redirect:/home";
 	}
 
 	@RequestMapping(value = "/accessDenied", method = { RequestMethod.POST, RequestMethod.GET })
 	public String accessDenied(Model model) {
 		model.addAttribute("errorMessage",
 				"Attenzione! Non si dispone delle autorizzazioni per accedere alla funzionalità richiesta.");
-		return "index";
+		return "redirect:/home";
 	}
 }
