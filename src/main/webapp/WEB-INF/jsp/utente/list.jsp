@@ -52,6 +52,7 @@
 										<td>
 											<a class="btn btn-sm btn-outline-secondary" href="${pageContext.request.contextPath}/utente/show/${utenteItem.id}">Dettagli</a>
 											<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="${pageContext.request.contextPath}/utente/edit/${utenteItem.id}">Modifica</a>
+											<a id="resetPwdLink_#_${utenteItem.id}" class="btn  btn-sm btn-outline-warning ml-2 mr-2 link-for-modal2" data-bs-toggle="modal" data-bs-target="#confirmResetPwdModal">Reset password</a>
 											<a id="changeStatoLink_#_${utenteItem.id }" class="btn btn-outline-${utenteItem.isAttivo()?'danger':'success'} btn-sm link-for-modal" data-bs-toggle="modal" data-bs-target="#confirmOperationModal"  >${utenteItem.isAttivo()?'Disabilita':'Abilita'}</a>
 										</td>
 									</tr>
@@ -93,6 +94,34 @@
 		$(".link-for-modal").click(function(){
 			var callerId = $(this).attr('id').substring(18);
 			$('#idUtenteForChangingStato').val(callerId);
+		});
+	</script>
+	
+	<div class="modal fade" id="confirmResetPwdModal" tabindex="-1"  aria-labelledby="confirmResetPwdModalLabel"
+	    aria-hidden="true">
+	    <div class="modal-dialog" >
+	        <div class="modal-content">
+	            <div class="modal-header">
+	                <h5 class="modal-title" id="confirmResetPwdModalLabel">Conferma reset password</h5>
+	                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	            </div>
+	            <div class="modal-body">
+	                Sei sicuro di voler resettare la password all'utente?
+	            </div>
+	            <form method="post" action="${pageContext.request.contextPath}/utente/resetPwd" >
+		            <div class="modal-footer">
+		            	<input type="hidden" name="idUtenteForResetPwd" id="idUtenteForResetPwd">
+		                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+		                <input type="submit" value="Continua"  class="btn btn-primary">
+		            </div>
+	            </form>
+	        </div>
+	    </div>
+	</div>
+	<script type="text/javascript">
+		$(".link-for-modal2").click(function(){
+			var callerId = $(this).attr('id').substring(15);
+			$('#idUtenteForResetPwd').val(callerId);
 		});
 	</script>
 	

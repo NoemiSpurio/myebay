@@ -30,4 +30,6 @@ public interface UtenteService {
 	public Utente findByUsername(String username);
 	
 	public void changePwd(UtenteChangePwdDTO nuovePwds, Utente utenteModel);
+	
+	public void resetUserPwd(Long idUtente);
 }
